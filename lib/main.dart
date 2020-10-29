@@ -58,12 +58,18 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     TextFormField(
                       enabled: false,
-                      maxLines: 4,
+                      maxLines: MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 4
+                          : 2,
                       textAlignVertical: TextAlignVertical.center,
                       keyboardType: TextInputType.number,
                       textAlign: TextAlign.end,
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: MediaQuery.of(context).orientation ==
+                                Orientation.portrait
+                            ? 30
+                            : 25,
                         fontFamily: 'Orbiton',
                         letterSpacing: 2.0,
                       ),
@@ -208,6 +214,13 @@ class _HomePageState extends State<HomePage> {
       calcAllSameOperations("/");
       calcAllSameOperations("+");
       calcAllSameOperations("-");
+      if (memoryList.length == 1 && memoryList.last.toString().endsWith(".0")) {
+        setState(() {
+          memoryList.last = memoryList.last
+              .toString()
+              .substring(0, memoryList.last.toString().length - 2);
+        });
+      }
     } else if (numbers.contains(button)) {
       if (memoryList.isEmpty) {
         memoryList.add(button);
@@ -241,7 +254,7 @@ class _HomePageState extends State<HomePage> {
         memoryList.last = "(-)" + memoryList.last;
       }
     } else if (button == ".") {
-      if (!operators.contains(memoryList.last)) {
+      if (numbers.contains(memoryList.last)) {
         memoryList.last = memoryList.last.toString() + ".";
       }
     } else {
@@ -259,7 +272,9 @@ class _HomePageState extends State<HomePage> {
         color: Colors.grey.shade300,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 25),
+            padding: MediaQuery.of(context).orientation == Orientation.portrait
+                ? const EdgeInsets.symmetric(vertical: 25)
+                : const EdgeInsets.symmetric(vertical: 10),
             child: Text(string,
                 style: TextStyle(
                   color: Colors.black,

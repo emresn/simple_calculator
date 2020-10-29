@@ -1,10 +1,16 @@
 # simple_calculator
 
-A new Flutter project.
+A compact calculator application built with Flutter.
+
+## Screenshot
+
+![Image of simple_calculator](https://firebasestorage.googleapis.com/v0/b/test-427bc2.appspot.com/o/img%2FcalculatorApp.png?alt=media&token=a2ff9d2f-8475-47ad-8393-cd12712ae819)
+
 
 ## Getting Started
 
 This project is a starting point for a Flutter application.
+
 
 A few resources to get you started if this is your first Flutter project:
 

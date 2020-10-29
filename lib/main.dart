@@ -1,5 +1,3 @@
-import 'dart:ffi';
-import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -33,24 +31,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int a;
-  int b;
-  int result;
-  String selectedOperator;
   List numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   List operators = ["+", "-", "x", "/", "%"];
   List memoryList = [];
   final _controller = TextEditingController();
-  String lastElement;
-
-  // void initState() {
-  //   super.initState();
-  // }
-
-  // void dispose() {
-  //   _controller.dispose();
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -214,10 +198,8 @@ class _HomePageState extends State<HomePage> {
       }
     } else if (button == "AC") {
       setState(() {
-        a = null;
-        b = null;
         memoryList = [];
-        selectedOperator = null;
+
         _controller.text = "";
       });
     } else if (button == "=") {
@@ -258,17 +240,6 @@ class _HomePageState extends State<HomePage> {
       } else {
         memoryList.last = "(-)" + memoryList.last;
       }
-      // if (memoryList.isEmpty) {
-      //   memoryList.add("(-)");
-      // } else if (memoryList.last.toString().startsWith("(-)")) {
-      //   memoryList.last = memoryList.last
-      //       .toString()
-      //       .substring(3, memoryList.last.toString().length);
-      // } else if (operators.contains(memoryList.last)) {
-      //   memoryList.add("(-)");
-      // } else {
-      //   memoryList.last = "(-)" + memoryList.last.toString();
-      // }
     } else if (button == ".") {
       if (!operators.contains(memoryList.last)) {
         memoryList.last = memoryList.last.toString() + ".";
